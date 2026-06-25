@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YT Keyword Scout</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ── HEADER ─────────────────────────────────────── -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">▶</div>
+        <div>
+          <span class="brand-name">YT Keyword Scout</span>
+          <span class="brand-sub">YouTube Analytics Tool</span>
+        </div>
+      </div>
+      <button class="settings-toggle" id="settings-toggle" title="API Key Settings">⚙ Settings</button>
+    </header>
+
+    <!-- ── SETTINGS PANEL ─────────────────────────────── -->
+    <div class="settings-panel" id="settings-panel">
+      <div class="settings-content">
+        <div class="settings-row">
+          <div class="settings-field">
+            <label class="field-label" for="api-key-input">YouTube Data API v3 Key</label>
+            <div class="api-key-row">
+              <input type="password" id="api-key-input" class="text-input" placeholder="AIzaSy...">
+              <button class="show-hide-btn" id="show-hide-btn" title="Show/hide key">👁</button>
+              <button class="btn-primary" id="save-key-btn">Save</button>
+              <button class="btn-ghost" id="clear-key-btn">Clear</button>
+            </div>
+            <div id="key-status" class="key-status"></div>
+          </div>
+        </div>
+        <a href="https://console.cloud.google.com/apis/library/youtube.googleapis.com" target="_blank" class="help-link">
+          → Get a free API key from Google Cloud Console
+        </a>
+      </div>
+    </div>
+
+    <!-- ── SEARCH BAR ──────────────────────────────────── -->
+    <div class="search-section">
+      <div class="search-row">
+        <input type="text" id="search-input" class="search-input" placeholder="Enter a keyword to research…" autocomplete="off">
+        <select id="result-count" class="count-select" title="Number of results">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+        <button class="search-btn" id="search-btn">Search</button>
+      </div>
+    </div>
+
+    <!-- ── RESULTS ─────────────────────────────────────── -->
+    <div class="results-section">
+      <div class="results-toolbar">
+        <span class="results-header" id="results-header"></span>
+        <button class="export-btn" id="export-btn">↓ Export CSV</button>
+      </div>
+      <div class="results-container" id="results-container">
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <p>Enter a keyword to analyze<br>top YouTube search results</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
