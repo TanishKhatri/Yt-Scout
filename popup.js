@@ -21,9 +21,9 @@ let isSearching = false;
 document.addEventListener('DOMContentLoaded', async () => {
   // Restore saved API key
   try {
-    const stored = await chrome.storage.local.get('yt_api_key');
-    if (stored.yt_api_key) {
-      apiKey = stored.yt_api_key;
+    const stored = localStorage.getItem('yt_api_key');
+    if (stored) {
+      apiKey = stored;
       document.getElementById('api-key-input').value = apiKey;
       setKeyStatus('✓ API key loaded', 'ok');
     } else {
@@ -57,12 +57,12 @@ function toggleKeyVisibility() {
   btn.textContent = isHidden ? '🙈' : '👁';
 }
 
-async function saveApiKey() {
+function saveApiKey() {
   const val = document.getElementById('api-key-input').value.trim();
   if (!val) { setKeyStatus('⚠ Enter a key first', 'error'); return; }
   apiKey = val;
   try {
-    await chrome.storage.local.set({ yt_api_key: val });
+    localStorage.setItem('yt_api_key', val);
     setKeyStatus('✓ Saved successfully', 'ok');
   } catch (e) {
     apiKey = val; // still use in-memory
@@ -73,7 +73,7 @@ async function saveApiKey() {
 async function clearApiKey() {
   apiKey = '';
   document.getElementById('api-key-input').value = '';
-  try { await chrome.storage.local.remove('yt_api_key'); } catch (e) {}
+  localStorage.removeItem('yt_api_key');
   setKeyStatus('Key cleared', '');
 }
 
